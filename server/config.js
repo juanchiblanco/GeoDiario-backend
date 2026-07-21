@@ -3,7 +3,9 @@ import cors from "cors";
 import morgan from "morgan";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
-import "../db/config.js";
+import conectarDB from "../db/config.js";
+
+await conectarDB();
 
 export default class Server {
   constructor() {

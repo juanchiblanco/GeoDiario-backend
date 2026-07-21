@@ -1,11 +1,15 @@
 import mongoose from "mongoose";
 
-try {
-    mongoose.connect(process.env.MONGODB).then(()=>{
-        console.info('Base de datos conectada')
-    })
-} catch (error) {
-    console.error(error)
-}
+const conectarDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGODB);
 
-export default mongoose
+    console.info("✅ Base de datos conectada");
+  } catch (error) {
+    console.error("❌ Error al conectar con la base de datos:", error);
+
+    process.exit(1);
+  }
+};
+
+export default conectarDB;

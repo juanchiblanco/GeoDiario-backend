@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
 
 const paisSchema = new Schema(
   {
@@ -17,15 +17,11 @@ const paisSchema = new Schema(
     },
 
     cca2: {
-      type: String,
-      required: true,
-      unique: true,
+      type: String
     },
 
     cca3: {
-      type: String,
-      required: true,
-      unique: true,
+      type: String
     },
 
     ccn3: String,
@@ -91,7 +87,7 @@ const paisSchema = new Schema(
   {
     timestamps: true,
     versionKey: false,
-  }
+  },
 );
 
 export default model("Pais", paisSchema);
