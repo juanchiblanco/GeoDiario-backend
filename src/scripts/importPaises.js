@@ -1,5 +1,5 @@
 import axios from "axios";
-import Pais from "../models/pais.js";
+import Pais from "../models/pais.models.js";
 import conectarDB from "../../db/config.js";
 
 console.log("🚀 Iniciando importación...");

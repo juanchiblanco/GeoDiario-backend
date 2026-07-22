@@ -90,4 +90,6 @@ const paisSchema = new Schema(
   },
 );
 
-export default model("Pais", paisSchema);
+const Pais = mongoose.model("pais", paisSchema);
+
+export default Pais;
