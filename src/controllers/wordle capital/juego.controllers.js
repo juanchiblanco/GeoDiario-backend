@@ -14,7 +14,7 @@ export const obtenerWordleCapital = async (req, res) => {
     const paisSeleccionado = paises[indice];
 
     res.status(200).json({
-      fecha: fecha.toISOString().split("T")[0],
+      fecha: new Date().toISOString().split("T")[0],
       juego: "encontra-la-ciudad",
       ciudad: paisSeleccionado.capital[0],
       pais: paisSeleccionado.name.common,
