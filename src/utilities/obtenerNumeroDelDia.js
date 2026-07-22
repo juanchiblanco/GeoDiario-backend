@@ -1,5 +1,5 @@
 export const obtenerNumeroDelDia = () => {
-  const fechaInicio = new Date("2026-07-22T00:00:00");
+  const fechaInicio = new Date(`${process.env.GAME_START_DATE}T00:00:00`);
 
   const fechaActual = new Date();
 
