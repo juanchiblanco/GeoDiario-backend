@@ -29,6 +29,8 @@ export const obtenerWordleCapital = async (req, res) => {
       dificultad,
       ciudad: paisSeleccionado.capital[0],
       pais: paisSeleccionado.name.common,
+      bandera: paisSeleccionado.flags?.png || "",
+      banderaEmoji: paisSeleccionado.flag || "",
     });
   } catch (error) {
     console.error("❌ Error al obtener el desafío diario:", error);
