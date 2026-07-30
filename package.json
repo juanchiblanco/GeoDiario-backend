@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node index.js",
     "dev": "node --env-file .env --watch index.js",
-    "import:countries": "node --env-file .env src/scripts/importPaises.js"
+    "import:countries": "node --env-file .env src/scripts/importPaises.js",
+    "update:difficulties": "node --env-file .env src/scripts/actualizarDificultades.js"
   },
   "keywords": [
     "juegos diarios",

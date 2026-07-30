@@ -8,6 +8,12 @@ const paisSchema = new Schema(
       nativeName: Schema.Types.Mixed,
     },
 
+    dificultad: {
+      type: String,
+      enum: ["normal", "dificil"],
+      default: "dificil",
+    },
+
     normalizedName: {
       type: String,
       required: true,
@@ -17,11 +23,11 @@ const paisSchema = new Schema(
     },
 
     cca2: {
-      type: String
+      type: String,
     },
 
     cca3: {
-      type: String
+      type: String,
     },
 
     ccn3: String,

@@ -1,13 +1,10 @@
 import axios from "axios";
 import Pais from "../models/pais.models.js";
 import conectarDB from "../../db/config.js";
+import paisesNormal from "../data/paisesNormal.js";
 
-console.log("🚀 Iniciando importación...");
 await conectarDB();
 
-// ------------------------------------
-// Obtener todos los países desde la API
-// ------------------------------------
 const getAllCountries = async () => {
   const countries = [];
 
@@ -42,9 +39,6 @@ const getAllCountries = async () => {
   return countries;
 };
 
-// ------------------------------------
-// Normalizar texto
-// ------------------------------------
 const normalizeText = (text) => {
   if (!text) return "";
 
@@ -56,15 +50,19 @@ const normalizeText = (text) => {
     .replace(/\s+/g, " ");
 };
 
-// ------------------------------------
-// Transformar un país
-// ------------------------------------
+const asignarDificultad = (nombrePais) => {
+  return paisesNormal.includes(normalizeText(nombrePais))
+    ? "normal"
+    : "dificil";
+};
+
 const transformarPais = (pais) => {
   const nombreComun = pais.names?.common || "";
 
   const nombreNormalizado = normalizeText(nombreComun);
 
-  const capitales = pais.capitals?.map((capital) => capital.name || "") || [];
+  const capitales =
+    pais.capitals?.map((capital) => capital.name || "") || [];
 
   const capitalesNormalizadas = capitales.map((capital) =>
     normalizeText(capital),
@@ -78,6 +76,8 @@ const transformarPais = (pais) => {
 
       nativeName: pais.names?.native || {},
     },
+
+    dificultad: asignarDificultad(nombreComun),
 
     normalizedName: nombreNormalizado,
 
@@ -153,24 +153,21 @@ const transformarPais = (pais) => {
   };
 };
 
-// ------------------------------------
-// Ejecución principal
-// ------------------------------------
 try {
   const countries = await getAllCountries();
 
-  console.log(`✅ Se obtuvieron ${countries.length} países`);
+  console.log(`Se obtuvieron ${countries.length} países`);
 
   const countriesTransformados = countries.map(transformarPais);
 
-  console.log("✅ Países transformados correctamente");
+  console.log("Países transformados correctamente");
 
   const paisesGuardados = await Pais.insertMany(countriesTransformados);
 
-  console.log(`💾 Se guardaron ${paisesGuardados.length} países en MongoDB`);
+  console.log(`Se guardaron ${paisesGuardados.length} países en MongoDB`);
 } catch (error) {
   console.error(
-    "❌ Error al importar países:",
+    "Error al importar países:",
     error.response?.data || error.message,
   );
 }
