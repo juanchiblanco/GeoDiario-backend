@@ -5,19 +5,19 @@ export const obtenerWordleCapital = async (req, res) => {
   try {
     const numeroDelDia = obtenerNumeroDelDia();
 
-    const dificultad =
-      req.query.dificultad === "dificil" ? "dificil" : "normal";
+    const dificultad = req.query.dificultad || "normal";
 
-    const paises = await Pais.find({
-      dificultad,
+    const filtro = {
       capital: { $exists: true, $ne: [] },
-    }).sort({ normalizedName: 1 });
+    };
 
-    if (paises.length === 0) {
-      return res.status(404).json({
-        mensaje: `No se encontraron países de dificultad ${dificultad}`,
-      });
+    if (dificultad === "normal") {
+      filtro.dificultad = "normal";
     }
+
+    const paises = await Pais.find(filtro).sort({
+      normalizedName: 1,
+    });
 
     const indice = numeroDelDia % paises.length;
 
