@@ -7,7 +7,8 @@
     "start": "node index.js",
     "dev": "node --env-file .env --watch index.js",
     "import:countries": "node --env-file .env src/scripts/importPaises.js",
-    "update:difficulties": "node --env-file .env src/scripts/actualizarDificultades.js"
+    "update:difficulties": "node --env-file .env src/scripts/actualizarDificultades.js",
+    "translate:countries": "node --env-file .env src/scripts/traducirPaisesCapitales.js"
   },
   "keywords": [
     "juegos diarios",
@@ -22,6 +23,7 @@
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "express-validator": "^7.3.2",
+    "i18n-iso-countries": "^7.14.0",
     "mongoose": "^9.7.4",
     "morgan": "^1.11.0"
   }
