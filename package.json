@@ -8,7 +8,9 @@
     "dev": "node --env-file .env --watch index.js",
     "import:countries": "node --env-file .env src/scripts/importPaises.js",
     "update:difficulties": "node --env-file .env src/scripts/actualizarDificultades.js",
-    "translate:countries": "node --env-file .env src/scripts/traducirPaisesCapitales.js"
+    "translate:countries": "node --env-file .env src/scripts/traducirPaisesCapitales.js",
+    "test:baraja": "node --env-file .env src/utilities/probarBaraja.js",
+  "test:baraja:ciclo": "node --env-file .env src/utilities/probarBarajaDelCiclo.js"
   },
   "keywords": [
     "juegos diarios",
