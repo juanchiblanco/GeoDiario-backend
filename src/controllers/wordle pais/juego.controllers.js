@@ -2,15 +2,13 @@ import Pais from "../../models/pais.models.js";
 import { obtenerNumeroDelDia } from "../../utilities/obtenerNumeroDelDia.js";
 import { obtenerBarajaDelCiclo } from "../../utilities/obtenerBarajaDelCiclo.js";
 
-export const obtenerWordleCapital = async (req, res) => {
+export const obtenerWordlePais = async (req, res) => {
   try {
     const numeroDelDia = obtenerNumeroDelDia();
 
     const dificultad = req.query.dificultad || "normal";
 
-    const filtro = {
-      capital: { $exists: true, $ne: [] },
-    };
+    const filtro = {};
 
     if (dificultad === "normal") {
       filtro.dificultad = "normal";
@@ -29,16 +27,16 @@ export const obtenerWordleCapital = async (req, res) => {
     const resultadoBaraja = obtenerBarajaDelCiclo(
       paises,
       numeroDelDia,
-      "capitales",
+      "paises"
     );
 
-    const paisSeleccionado = resultadoBaraja.baraja[resultadoBaraja.posicion];
+    const paisSeleccionado =
+      resultadoBaraja.baraja[resultadoBaraja.posicion];
 
     res.status(200).json({
       fecha: new Date().toISOString().split("T")[0],
-      juego: "encontra-la-capital",
+      juego: "encontra-el-pais",
       dificultad,
-      ciudad: paisSeleccionado.capital[0],
       pais: paisSeleccionado.name.common,
       bandera: paisSeleccionado.flags?.png || "",
       banderaEmoji: paisSeleccionado.flag || "",
