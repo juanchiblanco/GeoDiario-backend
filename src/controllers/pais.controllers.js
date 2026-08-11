@@ -3,7 +3,7 @@ import Pais from "../models/pais.models.js";
 export const obtenerPaises = async (req, res) => {
   try {
     const paises = await Pais.find();
-    console.log(`✅ Se encontraron ${paises.length} países`);
+    (`✅ Se encontraron ${paises.length} países`);
 
     res.status(200).json(paises);
   } catch (error) {

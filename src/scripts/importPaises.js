@@ -13,8 +13,6 @@ const getAllCountries = async () => {
   let more = true;
 
   while (more) {
-    console.log(`📥 Obteniendo países desde offset ${offset}...`);
-
     const response = await axios.get(
       "https://api.restcountries.com/countries/v5",
       {
@@ -61,8 +59,7 @@ const transformarPais = (pais) => {
 
   const nombreNormalizado = normalizeText(nombreComun);
 
-  const capitales =
-    pais.capitals?.map((capital) => capital.name || "") || [];
+  const capitales = pais.capitals?.map((capital) => capital.name || "") || [];
 
   const capitalesNormalizadas = capitales.map((capital) =>
     normalizeText(capital),
@@ -156,15 +153,9 @@ const transformarPais = (pais) => {
 try {
   const countries = await getAllCountries();
 
-  console.log(`Se obtuvieron ${countries.length} países`);
-
   const countriesTransformados = countries.map(transformarPais);
 
-  console.log("Países transformados correctamente");
-
   const paisesGuardados = await Pais.insertMany(countriesTransformados);
-
-  console.log(`Se guardaron ${paisesGuardados.length} países en MongoDB`);
 } catch (error) {
   console.error(
     "Error al importar países:",

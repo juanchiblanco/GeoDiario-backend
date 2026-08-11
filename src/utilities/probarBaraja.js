@@ -14,5 +14,3 @@ const paises = [
 ];
 
 const baraja = generarBaraja(paises, 12345);
-
-console.log(baraja);

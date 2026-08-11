@@ -24,8 +24,6 @@ const asignarDificultad = (nombrePais) => {
 try {
   const paises = await Pais.find();
 
-  console.log(`Se encontraron ${paises.length} países`);
-
   let normales = 0;
   let dificiles = 0;
 
@@ -47,13 +45,6 @@ try {
       dificiles++;
     }
   }
-
-  console.log("Dificultades actualizadas correctamente");
-  console.log(`🟢 Países normales: ${normales}`);
-  console.log(`🔴 Países difíciles: ${dificiles}`);
 } catch (error) {
-  console.error(
-    "❌ Error al actualizar dificultades:",
-    error.message,
-  );
+  console.error("❌ Error al actualizar dificultades:", error.message);
 }
